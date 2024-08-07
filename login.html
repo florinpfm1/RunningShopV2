@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Login</title>
+	<!--Bootstrap CSS (online)-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+	<!--Bootstrap CSS (local)-->
+	<link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="./src/css/style.css" rel="stylesheet">
+	<!--Font Awesome icons-->
+	<script src="https://kit.fontawesome.com/c3715467b7.js" crossorigin="anonymous"></script>
+	<!--Logo icon-->
+	<link rel="shortcut icon" href="./data/logo/logo_icon.ico" type="image/x-icon">
+</head>
+<body>
+	<!--Page Header:-->
+	<!--Navbar:-->
+	<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="index.html"><img src="./data/logo/run_logo_header.png" alt="logo" class="d-inline-block align-text-middle navbarLogo">The Running Shop</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0 noWrap">
+					<li class="nav-item"><a class="nav-link hovEffect" aria-current="page" href="index.html">Home</a></li>
+					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle hovEffect" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="products_all.html">All Products</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" href="products_category.html?category=singlets">Singlets</a></li>
+							<li><a class="dropdown-item" href="products_category.html?category=shorts">Shorts</a></li>
+							<li><a class="dropdown-item" href="products_category.html?category=jackets">Jackets</a></li>
+							<li><a class="dropdown-item" href="products_category.html?category=leggings">Leggings</a></li>
+							<li><a class="dropdown-item" href="products_category.html?category=shoes">Shoes</a></li>
+							<li><a class="dropdown-item" href="products_category.html?category=accessories">Accessories</a><li>
+							<li><a class="dropdown-item" href="products_category.html?category=sports bras">Sports Bras</a></li>
+							<li><a class="dropdown-item" href="products_category.html?category=skirts">Skirts</a></li>
+						</ul>
+					</li>
+					<li class="nav-item"><a class="nav-link hovEffect" href="discounts.html">Discounts</a></li>
+					<li class="nav-item"><a class="nav-link hovEffect" href="contact_us.html">Contact</a></li>
+					<li class="nav-item dropdown"><a class="nav-link active dropdown-toggle hovEffect" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="login.html">Admin</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" href="index.html">User</a></li>
+						</ul>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="cart.html">
+							<span id="productsInsideCart" class="badge rounded-pill bg-danger">0</span>
+							<i class="fas fa-cart-arrow-down fa-lg"></i>
+						</a>
+					</li>
+				</ul>
+				<form class="d-flex">
+					<input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+					<a id="searchButton" class="btn btn-outline-success"  target="_blank" role="submit">Search</a>
+				</form>
+			</div>
+		</div>
+	</nav>
+<!--Main content-->
+<main>
+	<!-- Login Admin -->
+    <div class="modal fade show modal-dialog modal-dialog-centered" id="modalLoginAdmin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Administrator Login</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="formModalLoginAdmin" class="row g-3 needs-validation" novalidate>
+                        <div class="position-relative mb-3 mx-1">
+                            <label for="username01" class="form-label">Username:</label>
+                            <input type="text" class="form-control" id="username01" placeholder="Insert username here">
+                            <div class="valid-tooltip">Ok!</div>
+                            <div class="invalid-tooltip">Please provide a valid Username.</div>
+                        </div>
+                        
+                        <div class="position-relative mb-3 mx-1">
+                            <label for="password03" class="form-label">Password:</label>
+                            <input type="password" class="form-control" id="password03" placeholder="Insert password here">
+                            <div class="valid-tooltip">Ok!</div>
+                            <div class="invalid-tooltip">Please provide a valid Username.</div>
+                        </div>
+                        <div class="m-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe" />
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+                        <div class="d-block text-center">
+							<a id="submitAdminLogin" class="btn btn btn-outline-success" href='admin.html' role="button">Submit</a>
+							<a id="closeAdminLogin" class="btn btn btn-outline-danger" href='index.html' role="button">Close</a>
+							<div class="d-flex align-items-center">
+								<button type="button" class="btn btn-sm btn-outline-dark ">Forgot password</button>
+								<p class="text-end ms-auto m-1 p-0">Don't have an account?</p>
+								<button type="button" class="btn btn-sm btn-outline-dark ">Sign Up</button>
+							</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+	<!--Offcanvas Newsletter-->
+	<div class="offcanvas offcanvas-bottom" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+		<div class="offcanvas-header">
+			<h5 class="offcanvas-title" id="offcanvasBottomLabel">Join our Newsletter</h5>
+			<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		</div>
+		<div class="offcanvas-body small">
+			<div class="d-flex justify-content-center my-4">
+				<div class="row">
+					<label for="inputEmailNewsletter" class="col-sm-2 col-form-label">Email:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="inputEmailNewsletter" value="">
+					</div>
+				</div>
+			</div>
+			<div class="text-center my-4">
+				<button id="sendNewsletter" class="btn btn-success">JOIN</button>
+			</div>
+		</div>
+	</div>
+</main>
+<!--Page Footer:-->
+<footer class="text-center bg-light text-muted">
+	<!--Newsletter-->
+	<div class="d-flex justify-content-center radial-gradient">
+		<div class="d-flex flex-column justify-content-center align-items-center">
+			<p class="mt-5 mb-0" style="color: white;">HEY YOU !</p>
+			<p class="mt-0 mb-5" style="color: white;">Subscribe for new arrivals, discounts, promotions and more!</p>
+		</div>
+		<button id="btnNewsletter" class="btn btn-success btn-lg fw-bold px-3 m-5 align-self-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">NEWSLETTER</button>
+	</div>
+	<!--Social media:-->
+	<div class="d-flex justify-content-center  justify-content-lg-between p-4 border-bottom">
+		<div class="d-flex ms-4 align-items-center">
+			<div class="me-4"><img src="./data/logo/run_logo_header.png" class="footerLogo" alt="logo"></div>
+			<div class="ms-2 me-1 ms-auto d-none d-lg-block" ><i class="fas fa-heartbeat"></i></div>
+			<div class="me-2 text-uppercase fw-bold ms-auto d-none d-lg-block"><span>The Running Shop</span></div>
+			<div class="fst-italic me-4 ms-auto d-none d-lg-block"><span>"Amazing, incredible, awesome!"</span></div>
+		</div>
+		<div class="d-flex me-4 align-items-center">
+			<div class="me-4 ms-auto d-none d-lg-block"><span>Get connected with us on social networks:</span></div>
+			<div class="me-0 text-nowrap">
+				<a href="https://www.facebook.com/" class="me-4 text-reset" target="_blank"><i class="fab fa-facebook-f"></i></a>
+				<a href="https://www.youtube.com/" class="me-4 text-reset" target="_blank"><i class="fab fa-youtube"></i></a>
+				<a href="https://instagram.com/" class="me-4 text-reset" target="_blank"><i class="fab fa-instagram"></i></a>
+				<a href="https://linkedin.com/" class="me-4 text-reset" target="_blank"><i class="fab fa-twitter"></i></a>
+				<a href="https://twitter.com/" class="me-4 text-reset" target="_blank"><i class="fab fa-linkedin"></i></a>
+			</div>
+		</div>
+	</div>
+	<!--Links:-->
+	<section class="">
+		<div class="container text-center text-md-start mt-5">
+			<div class="row mt-3">
+				<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+					<h6 class="text-uppercase fw-bold mb-4">Links</h6>
+					<p><a href="index.html" class="text-reset text-decoration-none hovEffect2">Home</a></p>
+					<p><a href="products_all.html" class="text-reset text-decoration-none hovEffect2">Shop (all products)</a></p>
+					<p><a href="discounts.html" class="text-reset text-decoration-none hovEffect2">Discounts</a></p>
+					<p><a href="contact_us.html" class="text-reset text-decoration-none hovEffect2">Contact</a></p>
+				</div>
+				<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+					<h6 class="text-uppercase fw-bold mb-4">By Category</h6>
+					<p><a href="products_category.html?category=singlets" class="text-reset text-decoration-none hovEffect2" >Singlets</a></p>
+					<p><a href="products_category.html?category=shorts" class="text-reset text-decoration-none hovEffect2" >Shorts</a></p>
+					<p><a href="products_category.html?category=jackets" class="text-reset text-decoration-none hovEffect2" >Jackets</a></p>
+					<p><a href="products_category.html?category=leggings" class="text-reset text-decoration-none hovEffect2" >Leggings</a></p>
+				</div>
+				<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+					<h6 class="text-uppercase fw-bold mb-4" style="visibility: hidden;">Categories</h6>
+					<p><a href="products_category.html?category=shoes" class="text-reset text-decoration-none hovEffect2" >Shoes</a></p>
+					<p><a href="products_category.html?category=accessories" class="text-reset text-decoration-none hovEffect2" >Accesories</a></p>
+					<p><a href="products_category.html?category=sports bras" class="text-reset text-decoration-none hovEffect2" >Sports Bras</a></p>
+					<p><a href="products_category.html?category=skirts" class="text-reset text-decoration-none hovEffect2" >Skirts</a></p>
+				</div>
+				<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+					<h6 class="text-uppercase fw-bold mb-4">Contact Info</h6>
+					<p><i class="fas fa-home me-3"></i> 21 Str. Vitezei, 430898 Baia Mare</p>
+					<p><i class="fas fa-envelope me-3"></i>therunningshop@gmail.com</p>
+					<p><i class="fas fa-phone me-3"></i> + 40 764 889 454</p>
+					<p><i class="fas fa-print me-3"></i> + 40 262 555 777</p>
+				</div>
+		</div>
+	</section>
+	<!--Copyright:-->
+	<div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+		© 2021 Copyright:<a class="text-reset fw-bold  text-decoration-none" href="#"> theRunningShop.ro</a>
+	</div>
+</footer>
+<!--My script JS-->
+<script src="./src/script-login.js" type="module"></script>
+<script src="./src/script-shared.js" type="module"></script>
+<!--Bootstrap bundle script-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+</body>
+</html>

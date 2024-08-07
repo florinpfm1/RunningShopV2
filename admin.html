@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+    <!--Bootstrap CSS (online)-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!--Bootstrap CSS (local)-->
+    <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="./src/css/style.css" rel="stylesheet">
+    <!--Font Awesome icons-->
+    <script src="https://kit.fontawesome.com/c3715467b7.js" crossorigin="anonymous"></script>
+    <!--Logo icon-->
+    <link rel="shortcut icon" href="./data/logo/logo_icon.ico" type="image/x-icon">
+    <!--jQuery (online)-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<body>
+    <!--Page Header:-->
+    <!--Navbar:-->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html"><img src="./data/logo/run_logo_header.png" alt="logo" class="d-inline-block align-text-middle navbarLogo">The Running Shop</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 noWrap">
+                    <li class="nav-item"><a class="nav-link hovEffect" aria-current="page" href="index.html">Home</a></li>
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle hovEffect" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="products_all.html">All Products</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="products_category.html?category=singlets">Singlets</a></li>
+                            <li><a class="dropdown-item" href="products_category.html?category=shorts">Shorts</a></li>
+                            <li><a class="dropdown-item" href="products_category.html?category=jackets">Jackets</a></li>
+                            <li><a class="dropdown-item" href="products_category.html?category=leggings">Leggings</a></li>
+                            <li><a class="dropdown-item" href="products_category.html?category=shoes">Shoes</a></li>
+                            <li><a class="dropdown-item" href="products_category.html?category=accessories">Accessories</a><li>
+                            <li><a class="dropdown-item" href="products_category.html?category=sports bras">Sports Bras</a></li>
+                            <li><a class="dropdown-item" href="products_category.html?category=skirts">Skirts</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link hovEffect" href="discounts.html">Discounts</a></li>
+                    <li class="nav-item"><a class="nav-link hovEffect" href="contact_us.html">Contact</a></li>
+                    <li class="nav-item dropdown"><a class="nav-link active dropdown-toggle hovEffect" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="login.html">Admin</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="index.html">User</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">
+                            <span id="productsInsideCart" class="badge rounded-pill bg-danger">0</span>
+                            <i class="fas fa-cart-arrow-down fa-lg"></i>
+                        </a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <a id="searchButton" class="btn btn-outline-success"  target="_blank" role="submit">Search</a>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!--Main content-->
+    <main>
+    <!-- Message to display to user -->
+    <div id="messageDiv"></div>
+    <!-- Management of product content -->
+    <div class="container pt-3 pb-5">
+        <div class="d-flex justify-content-between">
+            <h3>Management of products</h3>
+            <button id="openAddProductWindow" type="button" class="btn btn-grad addBtnFormat">Add product</button>
+        </div>
+        <!--Form Input to add a new product-->
+        <div id="inputForm" class="container py-3 formAddProductDiv visibilityOff">
+            <p class="pb-2 fw-bold">Product properties</p>
+            <!--Form to modify a product-->
+            <div class="row">
+                <!--Form-->
+                <div class="col-12 col-md-10 col-lg-10 mt-5">
+                    <form id="productForm" class="row g-3 needs-validation" novalidate>
+                        <div class="d-flex">
+                            <div class="position-relative mb-3 col mx-1">
+                                <label for="name02" class="form-label-sm">Name of item:</label>
+                                <input type="text" class="form-control form-control-sm" id="name02" required>
+                                <div class="valid-tooltip">Looks good!</div>
+                                <div class="invalid-tooltip">Please provide a valid Name.</div>
+                            </div>
+                            <div class="position-relative mb-3 mx-1">
+                                <label for="category10" class="form-label-sm">Category:</label>
+                                <select class="form-select form-select-sm" id="category10" required>
+                                    <option selected disabled value="">Choose an option</option>
+                                    <option value="1">singlets</option>
+                                    <option value="2">shorts</option>
+                                    <option value="3">jackets</option>
+                                    <option value="4">leggings</option>
+                                    <option value="5">shoes</option>
+                                    <option value="6">accessories</option>
+                                    <option value="7">sports bras</option>
+                                    <option value="8">skirts</option>
+                                </select>
+                                <div class="valid-tooltip">Looks good!</div>
+                                <div class="invalid-tooltip">Please select a Category.</div>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="position-relative mb-3 col mx-1">
+                                <label for="id01" class="form-label-sm">ID:</label>
+                                <input type="number" class="form-control form-control-sm" id="id01" min="1" max="99" step="1" placeholder="Autogenerated" required disabled>  <!--Note: "required" means input is not valid when empty-->
+                                <div class="valid-tooltip">Looks good!</div>  <!--Note: message to user for valid input-->
+                                <div class="invalid-tooltip">Please provide a valid ID number.</div>  <!--Note: message to user for invalid input-->
+                            </div>
+                            <div class="position-relative mb-3 col mx-1">
+                                <label for="price07" class="form-label-sm">Price of 1 item:</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text" style="font-size: 11px;">$</span>
+                                    <input type="number" class="form-control form-control-sm" id="price07" min="0" max="999" step="0.01" required>
+                                    <div class="valid-tooltip">Looks good!</div>
+                                    <div class="invalid-tooltip">Please provide a valid Number.</div>
+                                </div>
+                            </div>
+                            <div class="position-relative mb-3 col mx-1">
+                                <label for="stock11" class="form-label-sm">Quantity:</label>
+                                <input type="number" class="form-control form-control-sm" id="stock11" min="1" max="9999" step="1" required>
+                                <div class="valid-tooltip">Looks good!</div>
+                                <div class="invalid-tooltip">Please provide a valid Quantity.</div>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="position-relative mb-3 col mx-1">
+                                <label for="descriptionShort08" class="form-label-sm">Short description:</label>
+                                <textarea class="form-control form-control-sm" id="descriptionShort08" placeholder="Insert short description here" required></textarea>
+                                <div class="valid-tooltip">Looks good!</div>
+                                <div class="invalid-tooltip">Please provide a valid short description.</div>
+                            </div>
+                            <div class="position-relative mb-3 col mx-1">
+                                <label for="descriptionLong09" class="form-label-sm">Long description:</label>
+                                <textarea class="form-control form-control-sm" id="descriptionLong09" placeholder="Insert long description here" required></textarea>
+                                <div class="valid-tooltip">Looks good!</div>
+                                <div class="invalid-tooltip">Please provide a valid long description.</div>
+                            </div>
+                        </div>
+                        <div class="position-relative mb-3">
+                            <label for="picture03" class="form-label-sm">Main Picture (front):</label>
+                            <input type="text" name="" class="form-control form-control-sm" id="picture03" value="" placeholder="Insert picture link here" required>
+                            <div class="valid-tooltip">Looks good!</div>
+                            <div class="invalid-tooltip">Please provide a valid Link.</div>
+                        </div>
+                        <div class="position-relative mb-3">
+                            <label for="pictureDetails04" class="form-label-sm">Picture more Details (high res):</label>
+                            <input type="text" name="" class="form-control form-control-sm" id="pictureDetails04" value="" placeholder="Insert picture link here" required>
+                            <div class="valid-tooltip">Looks good!</div>
+                            <div class="invalid-tooltip">Please provide a valid Link.</div>
+                        </div>
+                        <div class="position-relative mb-3">
+                            <label for="pictureExtra05" class="form-label-sm">Picture Extra infos (angle):</label>
+                            <input type="text" name="" class="form-control form-control-sm" id="pictureExtra05" value="" placeholder="Insert picture link here" required>
+                            <div class="valid-tooltip">Looks good!</div>
+                            <div class="invalid-tooltip">Please provide a valid Link.</div>
+                        </div>
+                        <div class="position-relative mb-5">
+                            <label for="pictureBack06" class="form-label-sm">Picture Backside (back):</label>
+                            <input type="text" name="" class="form-control form-control-sm" id="pictureBack06" value="" placeholder="Insert picture link here" required>
+                            <div class="valid-tooltip">Looks good!</div>
+                            <div class="invalid-tooltip">Please provide a valid Link.</div>
+                        </div>
+                        <div class="d-grid gap-2 d-md-block text-center">
+                            <button id="submitFormButton" class="btn btn-outline-success" type="submit" >Add</button>
+                            <button id="editFormButton" class="btn btn-outline-success disabled" type="submit" >Save</button>
+                            <button id="closeFormButton" class="btn btn-outline-danger" type="button">Close</button>
+                            <button id="resetFormButton" class="btn btn-outline-warning" type="button">Reset</button>
+                        </div>
+                    </form>
+                </div>
+                <!--Preview photo-->
+                <div class="col-12 col-md-2 col-lg-2 text-center">
+                    <p class="text-center m-0">Photo preview:</p>
+                    <img class="img-fluid border border-1" name="imageHolder03" id="imageHolder03" src="./data/admin/photo_preview2.png">
+                    <img class="img-fluid border border-1" name="imageHolder04" id="imageHolder04" src="./data/admin/photo_preview2.png">
+                    <img class="img-fluid border border-1" name="imageHolder05" id="imageHolder05" src="./data/admin/photo_preview2.png">
+                    <img class="img-fluid border border-1" name="imageHolder06" id="imageHolder06" src="./data/admin/photo_preview2.png">
+                </div>
+            </div>
+        </div>
+        <!--Stock Table with products-->
+        <div id="stockTable" class="container py-3 stockTable stockTableDiv visibilityOn">
+            <p class="pb-2 fw-bold">Stock table</p>
+            <table class="table table-borderless table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Picture</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Qty</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody id="stockTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+    <!--Offcanvas Newsletter-->
+	<div class="offcanvas offcanvas-bottom" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+		<div class="offcanvas-header">
+			<h5 class="offcanvas-title" id="offcanvasBottomLabel">Join our Newsletter</h5>
+			<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		</div>
+		<div class="offcanvas-body small">
+			<div class="d-flex justify-content-center my-4">
+				<div class="row">
+					<label for="inputEmailNewsletter" class="col-sm-2 col-form-label">Email:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="inputEmailNewsletter" value="">
+					</div>
+				</div>
+			</div>
+			<div class="text-center my-4">
+				<button id="sendNewsletter" class="btn btn-success">JOIN</button>
+			</div>
+		</div>
+	</div>
+    </main>
+    <!--Page Footer:-->
+	<footer class="text-center bg-light text-muted">
+		<!--Newsletter-->
+        <div class="d-flex justify-content-center radial-gradient">
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <p class="mt-5 mb-0" style="color: white;">HEY YOU !</p>
+                <p class="mt-0 mb-5" style="color: white;">Subscribe for new arrivals, discounts, promotions and more!</p>
+            </div>
+            <button id="btnNewsletter" class="btn btn-success btn-lg fw-bold px-3 m-5 align-self-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">NEWSLETTER</button>
+        </div>
+        <!--Social media:-->
+		<div class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+			<div class="d-flex ms-4 align-items-center">
+				<div class="me-4"><img src="./data/logo/run_logo_header.png" class="footerLogo" alt="logo"></div>
+				<div class="ms-2 me-1 ms-auto d-none d-lg-block" ><i class="fas fa-heartbeat"></i></div>
+				<div class="me-2 text-uppercase fw-bold ms-auto d-none d-lg-block"><span>The Running Shop</span></div>
+				<div class="fst-italic me-4 ms-auto d-none d-lg-block"><span>"Amazing, incredible, awesome!"</span></div>
+			</div>
+			<div class="d-flex me-4 align-items-center">
+				<div class="me-4 ms-auto d-none d-lg-block"><span>Get connected with us on social networks:</span></div>
+				<div class="me-0 text-nowrap">
+					<a href="https://www.facebook.com/" class="me-4 text-reset" target="_blank"><i class="fab fa-facebook-f"></i></a>
+					<a href="https://www.youtube.com/" class="me-4 text-reset" target="_blank"><i class="fab fa-youtube"></i></a>
+					<a href="https://instagram.com/" class="me-4 text-reset" target="_blank"><i class="fab fa-instagram"></i></a>
+					<a href="https://twitter.com/" class="me-4 text-reset" target="_blank"><i class="fab fa-twitter"></i></a>
+					<a href="https://linkedin.com/" class="me-4 text-reset" target="_blank"><i class="fab fa-linkedin"></i></a>
+				</div>
+			</div>
+		</div>
+		<!--Links:-->
+		<section class="">
+			<div class="container text-center text-md-start mt-5">
+				<div class="row mt-3">
+					<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+						<h6 class="text-uppercase fw-bold mb-4">Links</h6>
+						<p><a href="index.html" class="text-reset text-decoration-none hovEffect2">Home</a></p>
+						<p><a href="products_all.html" class="text-reset text-decoration-none hovEffect2">Shop (all products)</a></p>
+						<p><a href="discounts.html" class="text-reset text-decoration-none hovEffect2">Discounts</a></p>
+						<p><a href="contact_us.html" class="text-reset text-decoration-none hovEffect2">Contact</a></p>
+					</div>
+					<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+						<h6 class="text-uppercase fw-bold mb-4">By Category</h6>
+						<p><a href="products_category.html?category=singlets" class="text-reset text-decoration-none hovEffect2" >Singlets</a></p>
+						<p><a href="products_category.html?category=shorts" class="text-reset text-decoration-none hovEffect2" >Shorts</a></p>
+						<p><a href="products_category.html?category=jackets" class="text-reset text-decoration-none hovEffect2" >Jackets</a></p>
+						<p><a href="products_category.html?category=leggings" class="text-reset text-decoration-none hovEffect2" >Leggings</a></p>
+					</div>
+					<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+						<h6 class="text-uppercase fw-bold mb-4" style="visibility: hidden;">Categories</h6>
+						<p><a href="products_category.html?category=shoes" class="text-reset text-decoration-none hovEffect2" >Shoes</a></p>
+						<p><a href="products_category.html?category=accessories" class="text-reset text-decoration-none hovEffect2" >Accesories</a></p>
+						<p><a href="products_category.html?category=sports bras" class="text-reset text-decoration-none hovEffect2" >Sports Bras</a></p>
+						<p><a href="products_category.html?category=skirts" class="text-reset text-decoration-none hovEffect2" >Skirts</a></p>
+					</div>
+					<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+						<h6 class="text-uppercase fw-bold mb-4">Contact Info</h6>
+						<p><i class="fas fa-home me-3"></i> 21 Str. Vitezei, 430898 Baia Mare</p>
+						<p><i class="fas fa-envelope me-3"></i>therunningshop@gmail.com</p>
+						<p><i class="fas fa-phone me-3"></i> + 40 764 889 454</p>
+						<p><i class="fas fa-print me-3"></i> + 40 262 555 777</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--Copyright:-->
+		<div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+			© 2021 Copyright:<a class="text-reset fw-bold  text-decoration-none" href="#"> theRunningShop.ro</a>
+		</div>
+	</footer>
+	<!--My script JS-->
+	<script src="./src/script-admin.js" type="module"></script>
+    <script src="./src/script-shared.js" type="module"></script>
+    <!--jQuery script-->
+    <script src="./src/jquery-1.11.2.min.js"></script>
+	<!--Bootstrap bundle script-->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+</body>
+</html>
